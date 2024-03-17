@@ -19,10 +19,12 @@
     <ClInclude Include="src\GreenEngine\Core\EntryPoint.h">
       <Filter>GreenEngine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\gepch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GreenEngine\Core\Application.cpp">
       <Filter>GreenEngine\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\gepch.cpp" />
   </ItemGroup>
 </Project>

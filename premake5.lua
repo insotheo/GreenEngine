@@ -15,6 +15,9 @@ project "GreenEngine"
      targetdir("bin/"..outputdirectory.."/%{prj.name}")
      objdir("bin-inter/"..outputdirectory.."/%{prj.name}")
 
+     pchheader "gepch.h"
+     pchsource "GreenEngine/src/gepch.cpp"
+
      files{
           "%{prj.name}/src/**.h", 
           "%{prj.name}/src/**.cpp"
