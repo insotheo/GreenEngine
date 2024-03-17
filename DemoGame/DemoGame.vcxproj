@@ -93,9 +93,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GreenEngine\GreenEngine.vcxproj">
-      <Project>{CC1D619C-38D3-D991-C1C7-D3682D7CD095}</Project>
-    </ProjectReference>
+    <ClCompile Include="src\MainSource.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

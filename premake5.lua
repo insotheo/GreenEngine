@@ -16,26 +16,30 @@ project "GreenEngine"
      objdir("bin-inter/"..outputdirectory.."/%{prj.name}")
 
      files{
-          "%{prj.name}/src/**.h", "%{prj.name}/src/**.cpp"
+          "%{prj.name}/src/**.h", 
+          "%{prj.name}/src/**.cpp"
      }
 
      includedirs{
           "%{prj.name}/src"
      }
-
+     
      filter "system:windows"
           cppdialect "C++17"
           staticruntime "On"
           systemversion "latest"
+          postbuildcommands{
+               ("{COPY} %{cfg.buildtarget.relpath} ../bin/"..outputdirectory.."/DemoGame")
+          }
+
           defines{
                "GE_PLATFORM_WINDOWS", "GE_BUILD_DLL"
           }
-          postbuildcommands{
-               ("{COPY} %{cfg.buildtarget.relpath} ../bin/"..outputdirectory.."/DevDemoGame")
-          }
+          
           filter "configurations:Debug"
                defines "GE_CONFIGURATION_DEBUG"
                symbols "On"
+
           filter "configurations:Release"
                defines "GE_CONFIGURATION_RELEASE"
                optimize "On"
@@ -48,16 +52,15 @@ project "DemoGame"
      objdir("bin-inter/"..outputdirectory.."/%{prj.name}")
 
      files{
-          "%{prj.name}/src/**.h", "%{prj.name}/src/**.cpp"
+          "%{prj.name}/src/**.h", 
+          "%{prj.name}/src/**.cpp"
      }
 
      includedirs{
           "GreenEngine/src"
      }
 
-     links{
-          "GreenEngine"
-     }
+
 
      filter "system:windows"
           cppdialect "C++17"
@@ -66,9 +69,11 @@ project "DemoGame"
           defines{
                "GE_PLATFORM_WINDOWS"
           }
+
           filter "configurations:Debug"
                defines "GE_CONFIGURATION_DEBUG"
                symbols "On"
+               
           filter "configurations:Release"
                defines "GE_CONFIGURATION_RELEASE"
                optimize "On"

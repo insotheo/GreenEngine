@@ -10,10 +10,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\GreenEngine.h" />
-    <ClInclude Include="src\GreenEngine\Core\Core.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CC1D619C-38D3-D991-C1C7-D3682D7CD095}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
@@ -76,7 +72,7 @@
       <ImportLibrary>..\bin\Debug-windows-x86_64\GreenEngine\GreenEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Debug-windows-x86_64\GreenEngine\GreenEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\GreenEngine\GreenEngine.dll ..\bin\Debug-windows-x86_64\DevDemoGame &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\GreenEngine\GreenEngine.dll ..\bin\Debug-windows-x86_64\DevDemoGame &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Debug-windows-x86_64\GreenEngine\GreenEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\GreenEngine\GreenEngine.dll ..\bin\Debug-windows-x86_64\DemoGame &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\GreenEngine\GreenEngine.dll ..\bin\Debug-windows-x86_64\DemoGame &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -101,9 +97,17 @@
       <ImportLibrary>..\bin\Release-windows-x86_64\GreenEngine\GreenEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Release-windows-x86_64\GreenEngine\GreenEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\GreenEngine\GreenEngine.dll ..\bin\Release-windows-x86_64\DevDemoGame &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\GreenEngine\GreenEngine.dll ..\bin\Release-windows-x86_64\DevDemoGame &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Release-windows-x86_64\GreenEngine\GreenEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\GreenEngine\GreenEngine.dll ..\bin\Release-windows-x86_64\DemoGame &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\GreenEngine\GreenEngine.dll ..\bin\Release-windows-x86_64\DemoGame &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\GreenEngine.h" />
+    <ClInclude Include="src\GreenEngine\Core\Application.h" />
+    <ClInclude Include="src\GreenEngine\Core\Core.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\GreenEngine\Core\Application.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
