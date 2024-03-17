@@ -10,5 +10,7 @@ namespace GreenEngine {
 
 		void Run();
 	};
+
+	Application* Create();
 }
 

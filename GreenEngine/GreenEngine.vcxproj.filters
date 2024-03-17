@@ -16,6 +16,9 @@
     <ClInclude Include="src\GreenEngine\Core\Core.h">
       <Filter>GreenEngine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\GreenEngine\Core\EntryPoint.h">
+      <Filter>GreenEngine\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GreenEngine\Core\Application.cpp">

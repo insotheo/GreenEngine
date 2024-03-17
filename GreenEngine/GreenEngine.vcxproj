@@ -104,6 +104,7 @@
     <ClInclude Include="src\GreenEngine.h" />
     <ClInclude Include="src\GreenEngine\Core\Application.h" />
     <ClInclude Include="src\GreenEngine\Core\Core.h" />
+    <ClInclude Include="src\GreenEngine\Core\EntryPoint.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GreenEngine\Core\Application.cpp" />

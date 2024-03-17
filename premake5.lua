@@ -60,6 +60,9 @@ project "DemoGame"
           "GreenEngine/src"
      }
 
+     links{
+         "GreenEngine"
+     }
 
 
      filter "system:windows"
