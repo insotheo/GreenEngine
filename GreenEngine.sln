@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenEngine", "GreenEngine\GreenEngine.csproj", "{CA9F2B1C-40EF-4735-9BDE-746325C61A12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoGame", "DemoGame\DemoGame.csproj", "{EE0FDD3E-AC4A-4C52-B693-E4E29D5DF209}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA9F2B1C-40EF-4735-9BDE-746325C61A12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA9F2B1C-40EF-4735-9BDE-746325C61A12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA9F2B1C-40EF-4735-9BDE-746325C61A12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA9F2B1C-40EF-4735-9BDE-746325C61A12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE0FDD3E-AC4A-4C52-B693-E4E29D5DF209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE0FDD3E-AC4A-4C52-B693-E4E29D5DF209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE0FDD3E-AC4A-4C52-B693-E4E29D5DF209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE0FDD3E-AC4A-4C52-B693-E4E29D5DF209}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
