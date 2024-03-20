@@ -24,15 +24,21 @@ project "GreenEngine"
      }
 
      includedirs{
-          "%{prj.name}/src"
+          "%{prj.name}/src",
+          "bin/CshDLL"
      }
      
      filter "system:windows"
           cppdialect "C++17"
           staticruntime "On"
           systemversion "latest"
+          prebuildcommands
+          {
+               ("dotnet build /gelog/gelog.csproj /property:Configuration=%{cfg.buildcfg}")
+          }
           postbuildcommands{
-               ("{COPY} %{cfg.buildtarget.relpath} ../bin/"..outputdirectory.."/DemoGame")
+               ("{COPY} %{cfg.buildtarget.relpath} ../bin/"..outputdirectory.."/DemoGame"),
+               ("{COPY} gelog.dll ../bin/"..outputdirectory.."/DemoGame")
           }
 
           defines{
@@ -83,3 +89,9 @@ project "DemoGame"
           filter "configurations:Release"
                defines "GE_CONFIGURATION_RELEASE"
                optimize "On"
+
+
+project "gelog"
+          location "gelog"
+          language "C#"
+          kind "SharedLib"
