@@ -1,32 +1,36 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoGame", "DemoGame\DemoGame.vcxproj", "{64542DA2-5021-88AD-793A-76556566BD3B}"
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GreenEngine", "GreenEngine", "{707A7BEE-62AF-439B-8A70-BE396430B650}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GreenEngine", "GreenEngine\GreenEngine.vcxproj", "{CC1D619C-38D3-D991-C1C7-D3682D7CD095}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenEngineAPI", "GreenEngineAPI\GreenEngineAPI.csproj", "{704F4ADC-A961-4C18-9BAF-AA9A9F7678BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gelog", "gelog\gelog.csproj", "{7318800F-DF2C-A8C0-A8AE-4B201482A4F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoGame", "DemoGame\DemoGame.csproj", "{96E37777-8A6E-4723-87F6-4BA37A62DF0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
-		Release|x64 = Release|x64
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{64542DA2-5021-88AD-793A-76556566BD3B}.Debug|x64.ActiveCfg = Debug|x64
-		{64542DA2-5021-88AD-793A-76556566BD3B}.Debug|x64.Build.0 = Debug|x64
-		{64542DA2-5021-88AD-793A-76556566BD3B}.Release|x64.ActiveCfg = Release|x64
-		{64542DA2-5021-88AD-793A-76556566BD3B}.Release|x64.Build.0 = Release|x64
-		{CC1D619C-38D3-D991-C1C7-D3682D7CD095}.Debug|x64.ActiveCfg = Debug|x64
-		{CC1D619C-38D3-D991-C1C7-D3682D7CD095}.Debug|x64.Build.0 = Debug|x64
-		{CC1D619C-38D3-D991-C1C7-D3682D7CD095}.Release|x64.ActiveCfg = Release|x64
-		{CC1D619C-38D3-D991-C1C7-D3682D7CD095}.Release|x64.Build.0 = Release|x64
-		{7318800F-DF2C-A8C0-A8AE-4B201482A4F1}.Debug|x64.ActiveCfg = Debug|x64
-		{7318800F-DF2C-A8C0-A8AE-4B201482A4F1}.Debug|x64.Build.0 = Debug|x64
-		{7318800F-DF2C-A8C0-A8AE-4B201482A4F1}.Release|x64.ActiveCfg = Release|x64
-		{7318800F-DF2C-A8C0-A8AE-4B201482A4F1}.Release|x64.Build.0 = Release|x64
+		{704F4ADC-A961-4C18-9BAF-AA9A9F7678BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{704F4ADC-A961-4C18-9BAF-AA9A9F7678BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{704F4ADC-A961-4C18-9BAF-AA9A9F7678BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{704F4ADC-A961-4C18-9BAF-AA9A9F7678BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96E37777-8A6E-4723-87F6-4BA37A62DF0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96E37777-8A6E-4723-87F6-4BA37A62DF0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96E37777-8A6E-4723-87F6-4BA37A62DF0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96E37777-8A6E-4723-87F6-4BA37A62DF0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{704F4ADC-A961-4C18-9BAF-AA9A9F7678BD} = {707A7BEE-62AF-439B-8A70-BE396430B650}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB523B4D-AF98-4ADE-B087-FE2A5C19EA50}
 	EndGlobalSection
 EndGlobal

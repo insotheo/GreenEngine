@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("gelog")]
+[assembly: AssemblyTitle("GreenEngineAPI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("gelog")]
+[assembly: AssemblyProduct("GreenEngineAPI")]
 [assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3845ec73-0233-41a5-9a60-77e8afbceba1")]
+[assembly: Guid("704f4adc-a961-4c18-9baf-aa9a9f7678bd")]
 
 // Version information for an assembly consists of the following four values:
 //
