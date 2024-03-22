@@ -2,7 +2,7 @@
 
 namespace GreenEngineAPI.Core
 {
-    internal class GameCanvas : Form
+    public class GameCanvas : Form
     {
         public enum WindowStyles
         {

@@ -7,7 +7,7 @@ namespace DemoGame
         static void Main()
         {
             Log.SetConsoleTitle("GAME CONSOLE");
-            RendererGameWindow window = new RendererGameWindow();
+            Game game = new Game();
             return;
         }
     }
