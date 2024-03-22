@@ -6,7 +6,9 @@ namespace DemoGame
     {
         static void Main()
         {
-            Log.Info("Hello!");
+            Log.SetConsoleTitle("GAME CONSOLE");
+            RendererGameWindow window = new RendererGameWindow();
+            return;
         }
     }
 }

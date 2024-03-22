@@ -102,5 +102,11 @@ namespace GreenEngineAPI.Core
             }
             return null;
         }
+
+        //Set console title
+        public static void SetConsoleTitle(string title)
+        {
+            Console.Title = title;
+        }
     }
 }
