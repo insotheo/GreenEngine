@@ -8,6 +8,7 @@ namespace DemoGame
     {
         public Game() : base(new Vector2D(700, 600),
             "Test game",
+            new ColorClass("#A00FFF"),
             GameCanvas.WindowStyles.FixedSingle) { }
 
 

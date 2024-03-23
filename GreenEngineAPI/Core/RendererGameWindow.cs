@@ -1,4 +1,5 @@
 ﻿using GreenEngineAPI.Graphics;
+using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -13,17 +14,21 @@ namespace GreenEngineAPI.Core
         private string WindowTitle;
 
 
-        public RendererGameWindow(Vector2D size, string title, GameCanvas.WindowStyles style)
+        public RendererGameWindow(Vector2D size, string title, ColorClass backgroundColor,GameCanvas.WindowStyles style)
         {
             WindowSize = size;
             WindowTitle = title;
             Window = new GameCanvas();
 
             //Apply settings to the window
-            Window.Size = new System.Drawing.Size((int)WindowSize.X, (int)WindowSize.Y);
+            Window.Size = new Size((int)WindowSize.X, (int)WindowSize.Y);
             Window.Text = WindowTitle;
+            Window.BackColor = backgroundColor.color;
             Window.FormBorderStyle = (FormBorderStyle)style;
             Window.StartPosition = FormStartPosition.CenterScreen;
+
+            //Window events
+            Window.FormClosing += WindowOnClosing;
 
             Log.Info($"Window \"{WindowTitle}\" created", "GREEN ENGINE");
 
@@ -32,7 +37,6 @@ namespace GreenEngineAPI.Core
 
             Application.Run(Window);
         }
-
 
         private void GameLoop()
         {
@@ -43,8 +47,7 @@ namespace GreenEngineAPI.Core
             }
         }
 
-
-        public void Dispose()
+        private void WindowOnClosing(object sender, FormClosingEventArgs e)
         {
             GameMainThread.Abort();
             Window.Dispose();
