@@ -15,5 +15,16 @@ namespace GreenEngineAPI.Graphics
         {
             color = Color.FromArgb(R, G, B);
         }
+
+        public void ChangeColor(string HEX)
+        {
+            color = ColorTranslator.FromHtml(HEX);
+        }
+
+        public void ChangeColor(int R, int G, int B)
+        {
+            color = Color.FromArgb(R, G, B);
+        }
+
     }
 }
