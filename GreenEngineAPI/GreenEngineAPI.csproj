@@ -49,6 +49,9 @@
     <Compile Include="Core\Log.cs" />
     <Compile Include="Core\RendererGameWindow.cs" />
     <Compile Include="Graphics\ColorClass.cs" />
+    <Compile Include="Graphics\RendererObject2D.cs" />
+    <Compile Include="Graphics\Sprite2D.cs" />
+    <Compile Include="Graphics\Texture2D.cs" />
     <Compile Include="Graphics\Vector2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
