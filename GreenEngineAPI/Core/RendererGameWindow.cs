@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
+using GreenEngineAPI.Input;
 
 namespace GreenEngineAPI.Core
 {
@@ -44,7 +45,6 @@ namespace GreenEngineAPI.Core
             Window.Paint += Renderer;
             Window.KeyDown += WindowOnKeyDown;
             Window.KeyUp += WindowOnKeyUp;
-            Window.MouseClick += WindowOnMouseClick;
             Window.FormClosing += WindowOnClosing;
 
             Log.Info($"Window \"{WindowTitle}\" created", "GREEN ENGINE");
@@ -55,19 +55,14 @@ namespace GreenEngineAPI.Core
             Application.Run(Window);
         }
 
-        private void WindowOnMouseClick(object sender, MouseEventArgs e)
-        {
-            SceneManager.GetCurrentScene().OnMouseClick();
-        }
-
         private void WindowOnKeyUp(object sender, KeyEventArgs e)
         {
-            SceneManager.GetCurrentScene().OnKeyUp();
+            SceneManager.GetCurrentScene().OnKeyUp(new KeyEventArg(e));
         }
 
         private void WindowOnKeyDown(object sender, KeyEventArgs e)
         {
-            SceneManager.GetCurrentScene().OnKeyDown();
+            SceneManager.GetCurrentScene().OnKeyDown(new KeyEventArg(e));
         }
 
         private void GameLoop()

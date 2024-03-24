@@ -56,10 +56,10 @@
     <Compile Include="Graphics\Sprite2D.cs" />
     <Compile Include="Graphics\Texture2D.cs" />
     <Compile Include="Graphics\Vector2D.cs" />
+    <Compile Include="Input\KeyEventArg.cs" />
+    <Compile Include="Input\Key.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Input\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

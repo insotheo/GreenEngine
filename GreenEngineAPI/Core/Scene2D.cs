@@ -1,5 +1,6 @@
 ﻿using GreenEngineAPI.Graphics;
 using System.Collections.Generic;
+using GreenEngineAPI.Input;
 
 namespace GreenEngineAPI.Core
 {
@@ -19,9 +20,8 @@ namespace GreenEngineAPI.Core
         public virtual void OnLoad() { }
         public virtual void OnUpdate() { }
         public virtual void OnDraw() { }
-        public virtual void OnKeyDown() { }
-        public virtual void OnKeyUp() { }
-        public virtual void OnMouseClick() { }
+        public virtual void OnKeyDown(KeyEventArg e) { }
+        public virtual void OnKeyUp(KeyEventArg e) { }
 
     }
 }
