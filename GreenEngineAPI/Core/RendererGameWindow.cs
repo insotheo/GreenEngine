@@ -15,26 +15,24 @@ namespace GreenEngineAPI.Core
         private Vector2D WindowSize;
         private string WindowTitle;
 
-        private static List<RendererObject2D> RendererObjects;
-
-        protected ColorClass @Color;
-
+        protected static SceneManager SceneManager;
 
         public RendererGameWindow(Vector2D size, string title, ColorClass backgroundColor, GameCanvas.WindowStyles style, bool topMost = false)
         {
             WindowSize = size;
             WindowTitle = title;
-            @Color = backgroundColor;
             Window = new GameCanvas();
 
-            RendererObjects = new List<RendererObject2D>();
+            SceneManager = new SceneManager(new Scene2D(backgroundColor,
+                new Camera2D(Vector2D.ZeroVector2D(), new Vector2D(1, 1), 0), 
+                new List<RendererObject2D>()));
 
             Log.Info($"Window \"{WindowTitle}\" is starting...", "GREEN ENGINE");
 
             //Apply settings to the window
             Window.Size = new Size((int)WindowSize.X, (int)WindowSize.Y);
             Window.Text = WindowTitle;
-            Window.BackColor = @Color.color;
+            Window.BackColor = SceneManager.GetCurrentScene().Color.color;
             Window.FormBorderStyle = (FormBorderStyle)style;
             Window.TopMost = topMost;
             Window.StartPosition = FormStartPosition.CenterScreen;
@@ -61,7 +59,9 @@ namespace GreenEngineAPI.Core
             {
                 try
                 {
+                    SceneManager.GetCurrentScene().OnDraw();
                     Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
+                    SceneManager.GetCurrentScene().OnUpdate();
                     Thread.Sleep(1);
                 }
                 catch(Exception ex)
@@ -73,19 +73,19 @@ namespace GreenEngineAPI.Core
 
         public static void AddRendererObject(RendererObject2D rendererObject)
         {
-            RendererObjects.Add(rendererObject);
+            SceneManager.GetCurrentScene().SceneRendererObjects.Add(rendererObject);
         }
 
         public static void RemoveRendererObject(RendererObject2D rendererObject)
         {
-            RendererObjects.Remove(rendererObject);
+            SceneManager.GetCurrentScene().SceneRendererObjects.Remove(rendererObject);
         }
 
         private void Renderer(object sender, PaintEventArgs e)
         {
             var graphics = e.Graphics;
-            graphics.Clear(@Color.color);
-            foreach(RendererObject2D rendererObject in RendererObjects)
+            graphics.Clear(SceneManager.GetCurrentScene().Color.color);
+            foreach(RendererObject2D rendererObject in SceneManager.GetCurrentScene().SceneRendererObjects)
             {
                 if(rendererObject == null)
                 {

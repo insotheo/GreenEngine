@@ -43,11 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Camera2D.cs" />
     <Compile Include="Core\GameCanvas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Core\Log.cs" />
     <Compile Include="Core\RendererGameWindow.cs" />
+    <Compile Include="Core\Scene2D.cs" />
+    <Compile Include="Core\SceneManager.cs" />
     <Compile Include="Graphics\ColorClass.cs" />
     <Compile Include="Graphics\RendererObject2D.cs" />
     <Compile Include="Graphics\Sprite2D.cs" />

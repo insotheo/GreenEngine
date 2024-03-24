@@ -1,4 +1,5 @@
-﻿using GreenEngineAPI.Core;
+﻿using DemoGame.GameAssets.Scenes;
+using GreenEngineAPI.Core;
 using GreenEngineAPI.Graphics;
 
 
@@ -6,6 +7,8 @@ namespace DemoGame
 {
     public class Game : RendererGameWindow
     {
+        TestScene testScene;
+
         public Game() : base(new Vector2D(800, 600),
             "Test game",
             new ColorClass(35, 40, 80),
@@ -13,7 +16,9 @@ namespace DemoGame
 
         protected override void OnGameLoad()
         {
-            Sprite2D player = new Sprite2D(new Vector2D(400, 300), new Vector2D(50, 50), "GameAssets\\InsotheoLogo.png", "player");
+            testScene = new TestScene();
+            SceneManager.AddScene(testScene);
+            SceneManager.LoadScene(1);
         }
 
     }
