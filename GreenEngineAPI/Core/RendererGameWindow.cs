@@ -26,6 +26,7 @@ namespace GreenEngineAPI.Core
             SceneManager = new SceneManager(new Scene2D(backgroundColor,
                 new Camera2D(Vector2D.ZeroVector2D(), new Vector2D(1, 1), 0), 
                 new List<RendererObject2D>()));
+            SceneManager.LoadScene(0);
 
             Log.Info($"Window \"{WindowTitle}\" is starting...", "GREEN ENGINE");
 
@@ -84,6 +85,11 @@ namespace GreenEngineAPI.Core
         private void Renderer(object sender, PaintEventArgs e)
         {
             var graphics = e.Graphics;
+            graphics.TranslateTransform(SceneManager.GetCurrentScene().Camera.Position.X,
+                SceneManager.GetCurrentScene().Camera.Position.Y);
+            graphics.ScaleTransform(SceneManager.GetCurrentScene().Camera.Scale.X,
+                SceneManager.GetCurrentScene().Camera.Scale.Y);
+            graphics.RotateTransform(SceneManager.GetCurrentScene().Camera.RotationAngle);
             graphics.Clear(SceneManager.GetCurrentScene().Color.color);
             foreach(RendererObject2D rendererObject in SceneManager.GetCurrentScene().SceneRendererObjects)
             {

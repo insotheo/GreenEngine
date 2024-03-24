@@ -9,7 +9,7 @@ namespace DemoGame.GameAssets.Scenes
         public Sprite2D Sprite;
 
         public TestScene() : base(new ColorClass("#FFFFFF"),
-            new Camera2D(new Vector2D(), new Vector2D(), 0), 
+            new Camera2D(new Vector2D(), Vector2D.OneVector2D(), 0), 
             new List<RendererObject2D>())
         { }
 
@@ -20,8 +20,7 @@ namespace DemoGame.GameAssets.Scenes
 
         public override void OnUpdate()
         {
-            Sprite.Position.X += 1;
-            Sprite.Position.Y -= 1;
+
         }
     }
 }

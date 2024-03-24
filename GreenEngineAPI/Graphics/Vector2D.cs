@@ -20,5 +20,10 @@
         {
             return new Vector2D(0, 0);
         }
+
+        public static Vector2D OneVector2D()
+        {
+            return new Vector2D(1, 1);
+        }
     }
 }

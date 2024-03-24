@@ -9,7 +9,7 @@ namespace DemoGame
     {
         TestScene testScene;
 
-        public Game() : base(new Vector2D(800, 600),
+        public Game() : base(new Vector2D(1280, 720),
             "Test game",
             new ColorClass(35, 40, 80),
             GameCanvas.WindowStyles.Sizable) { }
@@ -18,6 +18,9 @@ namespace DemoGame
         {
             testScene = new TestScene();
             SceneManager.AddScene(testScene);
+            SceneManager.LoadScene(1);
+            SceneManager.RemoveScene(testScene);
+            SceneManager.LoadScene(0);
             SceneManager.LoadScene(1);
         }
 
