@@ -120,24 +120,24 @@ namespace GreenEngineAPI.Core
 
         private void Renderer(object sender, PaintEventArgs e)
         {
-            var graphics = e.Graphics;
-            graphics.TranslateTransform(SceneManager.GetCurrentScene().Camera.Position.X,
-                SceneManager.GetCurrentScene().Camera.Position.Y);
-            graphics.ScaleTransform(SceneManager.GetCurrentScene().Camera.Scale.X,
-                SceneManager.GetCurrentScene().Camera.Scale.Y);
-            graphics.RotateTransform(SceneManager.GetCurrentScene().Camera.RotationAngle);
-            graphics.Clear(SceneManager.GetCurrentScene().Color.color);
-            foreach(RendererObject2D rendererObject in SceneManager.GetCurrentScene().SceneRendererObjects)
-            {
-                if(rendererObject == null)
+                var graphics = e.Graphics;
+                graphics.TranslateTransform(SceneManager.GetCurrentScene().Camera.Position.X,
+                    SceneManager.GetCurrentScene().Camera.Position.Y);
+                graphics.ScaleTransform(SceneManager.GetCurrentScene().Camera.Scale.X,
+                    SceneManager.GetCurrentScene().Camera.Scale.Y);
+                graphics.RotateTransform(SceneManager.GetCurrentScene().Camera.RotationAngle);
+                graphics.Clear(SceneManager.GetCurrentScene().Color.color);
+                foreach (RendererObject2D rendererObject in SceneManager.GetCurrentScene().SceneRendererObjects)
                 {
-                    Log.Error("Renderer object is null", WindowTitle);
-                    continue;
+                    if (rendererObject == null)
+                    {
+                        Log.Error("Renderer object is null", WindowTitle);
+                        continue;
+                    }
+                    graphics.DrawImage(rendererObject.Sprite,
+                        rendererObject.Position.X, rendererObject.Position.Y,
+                        rendererObject.Scale.X, rendererObject.Scale.Y);
                 }
-                graphics.DrawImage(rendererObject.Sprite,
-                    rendererObject.Position.X, rendererObject.Position.Y,
-                    rendererObject.Scale.X, rendererObject.Scale.Y);
-            }
         }
 
         private void WindowOnClosing(object sender, FormClosingEventArgs e)

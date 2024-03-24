@@ -2,8 +2,8 @@
 {
     public static class PhysicsConstants
     {
-        public const float g = -9.8f;
-        public const float G = -0.6743015151f;
+        public static float g = -9.8f;
+        public static float G = -0.6743015151f;
 
         public enum BodyType2D
         {

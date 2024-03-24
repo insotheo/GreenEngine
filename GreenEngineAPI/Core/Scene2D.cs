@@ -40,9 +40,12 @@ namespace GreenEngineAPI.Core
 
         public void OnPhysics()
         {
-            foreach(GameObject gameObject in PhysicsObjects)
+            for(int i = 0; i < PhysicsObjects.Count; i++)
             {
-                gameObject.SimulatePhysics(deltaTime);
+                if (PhysicsObjects[i].IsSimulatePhysics)
+                {
+                    PhysicsObjects[i].SimulatePhysics(deltaTime);
+                }
             }
         }
 
