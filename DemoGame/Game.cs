@@ -1,7 +1,6 @@
 ﻿using DemoGame.GameAssets.Scenes;
 using GreenEngineAPI.Core;
 using GreenEngineAPI.Graphics;
-using System.Threading.Tasks;
 
 
 namespace DemoGame
@@ -19,14 +18,6 @@ namespace DemoGame
         {
             testScene = new TestScene();
             SceneManager.AddScene(testScene);
-            SceneManager.LoadScene(1);
-        }
-
-        public static void BACK()
-        {
-            testScene = new TestScene();
-            SceneManager.InsertScene(1, testScene);
-            Task.Delay(1000).Wait();
             SceneManager.LoadScene(1);
         }
 

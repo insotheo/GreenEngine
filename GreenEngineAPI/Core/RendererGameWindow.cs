@@ -42,6 +42,9 @@ namespace GreenEngineAPI.Core
 
             //Window events
             Window.Paint += Renderer;
+            Window.KeyDown += WindowOnKeyDown;
+            Window.KeyUp += WindowOnKeyUp;
+            Window.MouseClick += WindowOnMouseClick;
             Window.FormClosing += WindowOnClosing;
 
             Log.Info($"Window \"{WindowTitle}\" created", "GREEN ENGINE");
@@ -50,6 +53,21 @@ namespace GreenEngineAPI.Core
             GameMainThread.Start();
 
             Application.Run(Window);
+        }
+
+        private void WindowOnMouseClick(object sender, MouseEventArgs e)
+        {
+            SceneManager.GetCurrentScene().OnMouseClick();
+        }
+
+        private void WindowOnKeyUp(object sender, KeyEventArgs e)
+        {
+            SceneManager.GetCurrentScene().OnKeyUp();
+        }
+
+        private void WindowOnKeyDown(object sender, KeyEventArgs e)
+        {
+            SceneManager.GetCurrentScene().OnKeyDown();
         }
 
         private void GameLoop()

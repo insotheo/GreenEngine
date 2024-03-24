@@ -20,23 +20,11 @@ namespace DemoGame.GameAssets.Scenes
             Sprite = new Sprite2D(new Vector2D(200, 200), new Vector2D(50, 50), "GameAssets\\InsotheoLogo.png", "IMAGE");
         }
 
-        public override void OnUpdate()
+        public override void OnKeyDown()
         {
-            if(Sprite.Position.X < 500)
-            {
-                Sprite.Position.X += 1;
-            }
-            else
-            {
-                if (a)
-                {
-                    RendererGameWindow.LoadScene(0);
-                    a = false;
-                    Game.BACK();
-                }
-                Sprite.Position.Y += 1;
-            }
-            Camera.Position.X += 2;
+            Log.Info("KEY DOWN");
         }
+
+
     }
 }

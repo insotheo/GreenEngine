@@ -19,6 +19,9 @@ namespace GreenEngineAPI.Core
         public virtual void OnLoad() { }
         public virtual void OnUpdate() { }
         public virtual void OnDraw() { }
+        public virtual void OnKeyDown() { }
+        public virtual void OnKeyUp() { }
+        public virtual void OnMouseClick() { }
 
     }
 }
