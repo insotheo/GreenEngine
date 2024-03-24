@@ -58,6 +58,8 @@
     <Compile Include="Graphics\Vector2D.cs" />
     <Compile Include="Input\KeyEventArg.cs" />
     <Compile Include="Input\Key.cs" />
+    <Compile Include="Physics\GameObject.cs" />
+    <Compile Include="Physics\PhysicsConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

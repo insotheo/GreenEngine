@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 using GreenEngineAPI.Input;
+using GreenEngineAPI.Physics;
+using System.Diagnostics;
 
 namespace GreenEngineAPI.Core
 {
@@ -15,11 +17,14 @@ namespace GreenEngineAPI.Core
         private GameCanvas Window;
         private Vector2D WindowSize;
         private string WindowTitle;
+        private Stopwatch Timer;
 
-        protected static SceneManager SceneManager;
+        public static SceneManager SceneManager;
 
         public RendererGameWindow(Vector2D size, string title, ColorClass backgroundColor, GameCanvas.WindowStyles style, bool topMost = false)
         {
+            Timer = new Stopwatch();
+
             WindowSize = size;
             WindowTitle = title;
             Window = new GameCanvas();
@@ -73,10 +78,15 @@ namespace GreenEngineAPI.Core
             {
                 try
                 {
+                    Timer.Start();
                     SceneManager.GetCurrentScene().OnDraw();
                     Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
                     SceneManager.GetCurrentScene().OnUpdate();
+                    SceneManager.GetCurrentScene().OnPhysics();
                     Thread.Sleep(1);
+                    Timer.Stop();
+                    SceneManager.GetCurrentScene().deltaTime = Timer.ElapsedMilliseconds / 10;
+                    Timer.Reset();
                 }
                 catch(Exception ex)
                 {
@@ -88,11 +98,19 @@ namespace GreenEngineAPI.Core
         public static void AddRendererObject(RendererObject2D rendererObject)
         {
             SceneManager.GetCurrentScene().SceneRendererObjects.Add(rendererObject);
+            if(rendererObject is GameObject)
+            {
+                SceneManager.GetCurrentScene().PhysicsObjects.Add(rendererObject as GameObject);
+            }
         }
 
         public static void RemoveRendererObject(RendererObject2D rendererObject)
         {
             SceneManager.GetCurrentScene().SceneRendererObjects.Remove(rendererObject);
+            if (rendererObject is GameObject)
+            {
+                SceneManager.GetCurrentScene().PhysicsObjects.Remove(rendererObject as GameObject);
+            }
         }
 
         public static void LoadScene(int index)
