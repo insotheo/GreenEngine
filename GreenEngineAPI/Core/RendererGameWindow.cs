@@ -82,6 +82,11 @@ namespace GreenEngineAPI.Core
             SceneManager.GetCurrentScene().SceneRendererObjects.Remove(rendererObject);
         }
 
+        public static void LoadScene(int index)
+        {
+            SceneManager.LoadScene(index);
+        }
+
         private void Renderer(object sender, PaintEventArgs e)
         {
             var graphics = e.Graphics;

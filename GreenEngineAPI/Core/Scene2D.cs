@@ -9,13 +9,12 @@ namespace GreenEngineAPI.Core
         public List<RendererObject2D> SceneRendererObjects;
         public Camera2D Camera;
 
-        public Scene2D(ColorClass backgroudnColor, Camera2D camera, List<RendererObject2D> objectsOnScene)
+        public Scene2D(ColorClass backgroundColor, Camera2D camera, List<RendererObject2D> objectsOnScene)
         {
-            Color = backgroudnColor;
+            Color = backgroundColor;
             Camera = camera;
             SceneRendererObjects = objectsOnScene;
         }
-
 
         public virtual void OnLoad() { }
         public virtual void OnUpdate() { }

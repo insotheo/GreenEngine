@@ -24,5 +24,15 @@ namespace GreenEngineAPI.Core
             CurrentScene.OnLoad();
         }
 
+        public void InsertScene(int index, Scene2D scene)
+        {
+            Scenes.Insert(index, scene);
+        }
+
+        public int GetIndexOfCurrentScene()
+        {
+            return Scenes.IndexOf(CurrentScene);
+        }
+
     }
 }

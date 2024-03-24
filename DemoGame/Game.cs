@@ -1,13 +1,14 @@
 ﻿using DemoGame.GameAssets.Scenes;
 using GreenEngineAPI.Core;
 using GreenEngineAPI.Graphics;
+using System.Threading.Tasks;
 
 
 namespace DemoGame
 {
     public class Game : RendererGameWindow
     {
-        TestScene testScene;
+        static TestScene testScene;
 
         public Game() : base(new Vector2D(1280, 720),
             "Test game",
@@ -19,8 +20,13 @@ namespace DemoGame
             testScene = new TestScene();
             SceneManager.AddScene(testScene);
             SceneManager.LoadScene(1);
-            SceneManager.RemoveScene(testScene);
-            SceneManager.LoadScene(0);
+        }
+
+        public static void BACK()
+        {
+            testScene = new TestScene();
+            SceneManager.InsertScene(1, testScene);
+            Task.Delay(1000).Wait();
             SceneManager.LoadScene(1);
         }
 
