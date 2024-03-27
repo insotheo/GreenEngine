@@ -1,5 +1,6 @@
 ﻿using GreenEngineAPI.Graphics;
 using GreenEngineAPI.Core;
+using System;
 
 namespace GreenEngineAPI.Physics
 {
@@ -50,19 +51,12 @@ namespace GreenEngineAPI.Physics
             Friction = 1.6f;
             GettingForce = 0;
         }
-
         public void SimulatePhysics(float deltaTime)
         {
-            if(BodyType != PhysicsConstants.BodyType2D.Static)
+            if (BodyType != PhysicsConstants.BodyType2D.Static)
             {
-                if (Acceleration.Y > 0)
-                {
-                    Acceleration.Y += deltaTime;
-                }
-                else
-                {
-                    Acceleration.Y -= deltaTime;
-                }
+                Acceleration.Y -= 1;
+
                 FallForce = Mass * PhysicsConstants.g; //F = mg
                 FrictionForce = Acceleration.Y != 0 && Acceleration.X != 0 ? Friction * Mass * PhysicsConstants.g * -1 : 0;
 
@@ -92,7 +86,7 @@ namespace GreenEngineAPI.Physics
         public void AddForce(Vector2D direction, float deltaTime, float deltaVelocity)
         {
             if(deltaTime != 0){
-                GettingForce = ((Mass * deltaVelocity) / deltaTime);
+                GettingForce = (((float)Math.Pow(Mass, -1) + 1 * deltaVelocity) / deltaTime);
                 Acceleration.X += GettingForce * direction.X;
                 if(Acceleration.X != 0)
                 {
@@ -142,7 +136,17 @@ namespace GreenEngineAPI.Physics
 
         private void InteractCollidedObject(GameObject obj, Vector2D interactionVector, float deltaTime)
         {
-
+            if (obj.BodyType == PhysicsConstants.BodyType2D.Kinematic && BodyType == PhysicsConstants.BodyType2D.Kinematic)
+            {
+                obj.Position.X += (Mass * obj.Mass * GettingForce + obj.ColliderRadius * ColliderRadius * 2) * -interactionVector.X;
+                obj.Position.Y += (Mass * obj.Mass * GettingForce + obj.ColliderRadius * ColliderRadius * 2) * interactionVector.Y;
+            }
+            else if (obj.BodyType == PhysicsConstants.BodyType2D.Static)
+            {
+                Acceleration.X = -interactionVector.X * PhysicsConstants.ColliderK;
+                Acceleration.Y = interactionVector.Y * PhysicsConstants.ColliderK;
+                FallForce = 0;
+            }
         }
     }
 }

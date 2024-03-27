@@ -21,13 +21,14 @@ namespace DemoGame.GameAssets.Scenes
         public override void OnLoad()
         {
             go = new GameObject(new Vector2D(100, 100), new Vector2D(50, 50), "GameAssets\\InsotheoLogo.png", "a");
-            go2 = new GameObject(new Vector2D(400, 0), new Vector2D(50, 50), "GameAssets\\InsotheoLogo.png", "a");
+            go2 = new GameObject(new Vector2D(100, 400), new Vector2D(200, 10), "GameAssets\\InsotheoLogo.png", "a");
             go2.HasCollision = true;
             go.HasCollision = true;
-            go2.BodyType = PhysicsConstants.BodyType2D.Kinematic;
-            go.BodyType = PhysicsConstants.BodyType2D.Rigid;
-            go.Mass = 1.25f;
-            
+            go.IsSimulatePhysics = true;
+            go2.IsSimulatePhysics = true;
+            go2.BodyType = PhysicsConstants.BodyType2D.Static;
+            go.BodyType = PhysicsConstants.BodyType2D.Kinematic;
+            go.Mass = 2f;
         }
 
         public override void OnKeyDown(KeyEventArg e)
