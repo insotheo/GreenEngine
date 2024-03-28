@@ -33,6 +33,31 @@ namespace GreenEngineAPI.Graphics
             return new Vector2D(0, 0);
         }
 
+        public static Vector2D operator +(Vector2D v1, Vector2D v2)
+        {
+            return new Vector2D(v1.X + v2.X, v1.Y + v2.Y);
+        }
+
+        public static Vector2D operator -(Vector2D v1, Vector2D v2)
+        {
+            return new Vector2D(v1.X - v2.X, v1.Y - v2.Y);
+        }
+
+        public static Vector2D operator *(Vector2D v, float scalar)
+        {
+            return new Vector2D(v.X * scalar, v.Y * scalar);
+        }
+
+        public static Vector2D operator /(Vector2D v, float divisor)
+        {
+            if (divisor == 0)
+            {
+                throw new DivideByZeroException("Division by zero");
+            }
+
+            return new Vector2D(v.X / divisor, v.Y / divisor);
+        }
+
         public static Vector2D ZeroVector2D()
         {
             return new Vector2D(0, 0);

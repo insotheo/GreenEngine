@@ -2,6 +2,7 @@
 using GreenEngineAPI.Core;
 using System;
 
+
 namespace GreenEngineAPI.Physics
 {
     public class GameObject : RendererObject2D
@@ -16,13 +17,8 @@ namespace GreenEngineAPI.Physics
         public bool IsSimulatePhysics;
         public float ColliderRadius;
         public bool HasCollision;
-        public float R;
-        public float FrictionForce;
-        public float FallForce;
-        public float GettingForce;
         public float Friction;
-        public Vector2D ForceDirection;
-        public Vector2D Acceleration;
+        public Vector2D Velocity;
         public PhysicsConstants.BodyType2D BodyType; //Static Kinematic
 
         public GameObject(Vector2D position, Vector2D scale, string pathToFile, string tag) 
@@ -39,29 +35,31 @@ namespace GreenEngineAPI.Physics
 
         private void SetDefaultPhysicsSettings()
         {
-            Mass = 1;
-            ColliderRadius = 1;
+            Mass = 1f;
+            ColliderRadius = 1f;
             HasCollision = true;
-            BodyType = PhysicsConstants.BodyType2D.Static;
-            Acceleration = new Vector2D();
-            ForceDirection = new Vector2D(0, 0);
-            R = 0;
-            FrictionForce = 0;
-            FallForce = 0;
             Friction = 1.6f;
-            GettingForce = 0;
+            BodyType = PhysicsConstants.BodyType2D.Static;
+            Velocity = new Vector2D();
         }
         public void SimulatePhysics(float deltaTime)
         {
             if (BodyType != PhysicsConstants.BodyType2D.Static)
             {
-                Acceleration.Y -= 1;
-
-                FallForce = Mass * PhysicsConstants.g; //F = mg
-                FrictionForce = Acceleration.Y != 0 && Acceleration.X != 0 ? Friction * Mass * PhysicsConstants.g * -1 : 0;
-
-
-                R = FrictionForce + FallForce + GettingForce;
+                Vector2D gravityForce = new Vector2D(0, Mass * PhysicsConstants.g);
+                Vector2D frictionForce = Velocity * (-Friction);
+                Vector2D totalForce = gravityForce + frictionForce;
+                Vector2D acceleration = totalForce / Mass;
+                Velocity += acceleration * deltaTime;
+                Vector2D newPosition = Position + Velocity * deltaTime;
+                if (CheckCollision(newPosition))
+                {
+                    Velocity = Vector2D.ZeroVector2D();
+                }
+                else
+                {
+                    Position = newPosition;
+                }
             }
             if (RendererGameWindow.SceneManager.GetCurrentScene().PhysicsObjects.Count - 1 > 0)
             {
@@ -71,31 +69,49 @@ namespace GreenEngineAPI.Physics
                     {
                         if (IsCollided(RendererGameWindow.SceneManager.GetCurrentScene().PhysicsObjects[i]))
                         {
-                            InteractCollidedObject(RendererGameWindow.SceneManager.GetCurrentScene().PhysicsObjects[i], new Vector2D(-Acceleration.X, -Acceleration.Y), deltaTime / 10);
+                            InteractCollidedObject(RendererGameWindow.SceneManager.GetCurrentScene().PhysicsObjects[i]);
                         }
                     }
                 }
             }
-            deltaTime /= 10;
-            Position.X += R * deltaTime * Acceleration.X;
-            Position.Y += R * deltaTime * Acceleration.Y;
-            GettingForce = GettingForce <= 0 ? 0 : GettingForce - deltaTime;
-            Acceleration = Vector2D.ZeroVector2D();
         }
 
         public void AddForce(Vector2D direction, float deltaTime, float deltaVelocity)
         {
-            if(deltaTime != 0){
-                GettingForce = (((float)Math.Pow(Mass, -1) + 1 * deltaVelocity) / deltaTime);
-                Acceleration.X += GettingForce * direction.X;
-                if(Acceleration.X != 0)
+            Vector2D force = direction * deltaVelocity;
+            Velocity += force / Mass * deltaTime;
+        }
+
+        private void InteractCollidedObject(GameObject body)
+        {
+            float deltaX = Position.X - body.Position.X;
+            float deltaY = Position.Y - body.Position.Y;
+            if(Math.Abs(deltaX) > Math.Abs(deltaY))
+            {
+                if (deltaX > 0)
                 {
-                    Acceleration.X += direction.X;
+                    Position.X = body.Position.X + body.Scale.X / 2 + Scale.X / 2;
                 }
-                Acceleration.Y += GettingForce * -direction.Y;
+                else
+                {
+                    Position.X = body.Position.X - body.Scale.X / 2 - Scale.X / 2;
+                }
+            }
+            else
+            {
+                if(deltaY > 0)
+                {
+                    Position.Y = body.Position.Y + body.Scale.Y / 2 + Scale.Y / 2;
+                }
+                else
+                {
+                    Position.Y = body.Position.Y - body.Scale.Y / 2 - Scale.Y / 2;
+                }
             }
         }
 
+
+        //Collision checkers
         private bool IsCollided(GameObject body)
         {
             if (!body.HasCollision || !HasCollision) { return false; }
@@ -117,7 +133,7 @@ namespace GreenEngineAPI.Physics
 
         public bool IsColliding(string tag)
         {
-            foreach(var body in RendererGameWindow.SceneManager.GetCurrentScene().SceneRendererObjects)
+            foreach (var body in RendererGameWindow.SceneManager.GetCurrentScene().SceneRendererObjects)
             {
                 if (this.Position.X + ColliderRadius <= body.Position.X + body.Scale.X &&
                     this.Position.X + this.Scale.X - ColliderRadius >= body.Position.X &&
@@ -134,19 +150,23 @@ namespace GreenEngineAPI.Physics
             return false;
         }
 
-        private void InteractCollidedObject(GameObject obj, Vector2D interactionVector, float deltaTime)
+        private bool CheckCollision(Vector2D newPosition)
         {
-            if (obj.BodyType == PhysicsConstants.BodyType2D.Kinematic && BodyType == PhysicsConstants.BodyType2D.Kinematic)
+            if (RendererGameWindow.SceneManager.GetCurrentScene().PhysicsObjects.Count - 1 > 0)
             {
-                obj.Position.X += (Mass * obj.Mass * GettingForce + obj.ColliderRadius * ColliderRadius * 2) * -interactionVector.X;
-                obj.Position.Y += (Mass * obj.Mass * GettingForce + obj.ColliderRadius * ColliderRadius * 2) * interactionVector.Y;
+                for (int i = 0; i < RendererGameWindow.SceneManager.GetCurrentScene().PhysicsObjects.Count; i++)
+                {
+                    if (RendererGameWindow.SceneManager.GetCurrentScene().PhysicsObjects[i] != this)
+                    {
+                        if (RendererGameWindow.SceneManager.GetCurrentScene().PhysicsObjects[i].Position == newPosition)
+                        {
+                            return true;
+                        }
+                    }
+                }
             }
-            else if (obj.BodyType == PhysicsConstants.BodyType2D.Static)
-            {
-                Acceleration.X = -interactionVector.X * PhysicsConstants.ColliderK;
-                Acceleration.Y = interactionVector.Y * PhysicsConstants.ColliderK;
-                FallForce = 0;
-            }
+            return false;
         }
+
     }
 }

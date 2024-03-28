@@ -80,9 +80,9 @@ namespace GreenEngineAPI.Core
                 {
                     Timer.Start();
                     SceneManager.GetCurrentScene().OnDraw();
+                    SceneManager.GetCurrentScene().OnPhysics();
                     Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
                     SceneManager.GetCurrentScene().OnUpdate();
-                    SceneManager.GetCurrentScene().OnPhysics();
                     Thread.Sleep(1);
                     Timer.Stop();
                     SceneManager.GetCurrentScene().deltaTime = Timer.ElapsedMilliseconds / 10;
